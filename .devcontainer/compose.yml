@@ -1,0 +1,47 @@
+version: "3"
+
+x-db-host: &DATABASE_HOST db
+x-db-user: &DATABASE_USER root
+x-db-password: &DATABASE_PASSWORD root
+
+services:
+  web:
+    container_name: web_server
+    image: mcr.microsoft.com/devcontainers/java:1-21-bullseye
+    tty: true
+    working_dir: /opt/app
+    environment:
+      TZ: Asia/Tokyo
+      LANG: C.UTF-8
+      DATABASE_HOST: *DATABASE_HOST
+      DATABASE_USER: *DATABASE_USER
+      DATABASE_PASSWORD: *DATABASE_PASSWORD
+    volumes:
+      - ..:/opt/app:delegated
+    ports:
+      - 8091:8091
+    depends_on:
+      - db
+
+  db:
+    container_name: db_server
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: *DATABASE_PASSWORD
+
+  phpmyadmin:
+    container_name: db_client
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8090:80
+    environment:
+      PMA_HOST: *DATABASE_HOST
+      PMA_USER: *DATABASE_USER
+      PMA_PASSWORD: *DATABASE_PASSWORD
+    depends_on:
+      - db
+
+volumes:
+  db-data:

@@ -1,0 +1,40 @@
+{
+  "name": "SpringBoot",
+  "dockerComposeFile": [
+    "./compose.yml"
+  ],
+  "service": "web",
+  "workspaceFolder": "/opt/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "fwcd.kotlin",
+        "mathiasfrohlich.Kotlin",
+        "Pivotal.vscode-boot-dev-pack",
+        "vscjava.vscode-spring-initializr",
+        "Pivotal.vscode-spring-boot",
+        "vscjava.vscode-spring-boot-dashboard",
+        "voidrot.liquibase",
+        "vscjava.vscode-gradle",
+        "EditorConfig.EditorConfig"
+      ],
+      "settings": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "[kotlin]": {
+          "editor.defaultFormatter": "fwcd.kotlin"
+        },
+        "[java]": {
+          "editor.suggest.snippetsPreventQuickSuggestions": false,
+          "editor.defaultFormatter": "redhat.java"
+        },
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
+        "java.codeGeneration.useBlocks": true,
+        "java.saveActions.organizeImports": true
+      }
+    }
+  }
+}
