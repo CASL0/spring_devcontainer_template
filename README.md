@@ -1,0 +1,2 @@
+# spring_devcontainer_template
+SpringBootのDevContainer用テンプレート
